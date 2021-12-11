@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <style>
+        .contain{
+            margin-top:100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .info{
+            width: 200px;
+            height: 640px; 
+            background: url("image.png");  
+            position: relative; 
+        }
+        #name_title{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 225px;
+            left: 4px;
+            font-size: 23px;
+            font-weight: 600;        
+        }
+        #name_player1{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 225px;
+            left: 102px;
+            font-size: 28px;
+            font-family:"楷体","楷体_GB2312"; 
+            font-weight: bold;
+        }
+        #level_title{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 281px;
+            left: 4px;
+            font-size: 23px;
+            font-weight: 600;        
+        }
+        #level_player1{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 281px;
+            left: 102px;
+            font-size: 28px;
+            font-family:"楷体","楷体_GB2312"; 
+            font-weight: bold;
+        }
+        #score_title{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 338px;
+            left: 4px;
+            font-size: 23px;
+            font-weight: 600;        
+        }
+        #score_player1{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 338px;
+            left: 102px;
+            font-size: 28px;
+            font-family:"楷体","楷体_GB2312"; 
+            font-weight: bold; 
+        }
+        #name_title_player2{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 470px;
+            left: 4px;
+            font-size: 23px;
+            font-weight: 600;        
+        }
+        #name_player2{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 470px;
+            left: 102px;
+            font-size: 28px;
+            font-family:"楷体","楷体_GB2312"; 
+            font-weight: bold;
+        }
+        #level_title_player2{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 526px;
+            left: 4px;
+            font-size: 23px;
+            font-weight: 600;        
+        }
+        #level_player2{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 526px;
+            left: 102px;
+            font-size: 28px;
+            font-family:"楷体","楷体_GB2312"; 
+            font-weight: bold;
+        }
+        #score_title_player2{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 583px;
+            left: 4px;
+            font-size: 23px;
+            font-weight: 600;        
+        }
+        #score_player2{
+            width: 94px;
+            height: 52px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 583px;
+            left: 102px;
+            font-size: 28px;
+            font-family:"楷体","楷体_GB2312"; 
+            font-weight: bold; 
+        }
+        .image{        
+            position: absolute;
+            width: 200px;
+            height: 640px;   
+        }
+        #canv{
+            background-color:gray;
+        }
+        .title{
+            text-align:center;
+            width: 200px;
+            height: 170px;
+            background-color: tomato;
+            font-size: 50px;
+        }
+        #single_button {
+            width: 100px;
+            height: 100px;  
+            border-bottom: 2px solid #eee;
+            background-image: linear-gradient(top, #999, #d0d0d0 80% );  
+            -moz-border-radius: 100px;  
+            -webkit-border-radius: 100px;  
+            border-radius: 100px;
+            box-shadow: inset rgba(0,0,0,0.2) 0px 5px 6px ;  
+            /* left: 50%;
+            top: 50%; */
+            margin-left: 50px;
+            margin-top: 50px;
+            position: relative;
+        }
+        #single_butt {
+            position: absolute;
+            width: 80px;
+            height: 52px;
+            left: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-family: "Lucida Sans";
+            font-weight: bold;
+            font-size: 23px;
+            text-shadow: 0px 1px 0px #fff;
+            text-align: center;
+            padding-top: 28px;   
+            -moz-border-radius: 100px;  
+            -webkit-border-radius: 100px;  
+            border-radius: 100px;  
+            background-position: 0 6px;
+            background-color: orange;
+            background-repeat: no-repeat;
+            box-shadow: rgba(0,0,0,.4) 0 3px 6px;
+            transition: all .1s ease-in;
+            color: white;
+            font-size: 25px;
+            font-family:"楷体","楷体_GB2312"; 
+            /* font-weight: bold; */
+        }
+        #single_butt:hover {
+            background-position: 0 0px;
+            box-shadow: rgba(0,0,0,.4) 0 3px 8px;
+        }
+        #single_butt:active {
+            width: 76px;
+            height: 48px;
+            margin: 2px 0 0 2px;   
+            border-bottom: 1px solid #fff;
+            font-size: 21px;
+            color: #777;
+            box-shadow: inset rgba(0,0,0,.5) 0px 5px 10px;
+        }
+        #double_button {
+            width: 100px;
+            height: 100px;  
+            border-bottom: 2px solid #eee;
+            background-image: linear-gradient(top, #999, #d0d0d0 80% );  
+            -moz-border-radius: 100px;  
+            -webkit-border-radius: 100px;  
+            border-radius: 100px;
+            box-shadow: inset rgba(0,0,0,0.2) 0px 5px 6px ;  
+            /* left: 50%;
+            top: 50%; */
+            margin-left: 50px;
+            margin-top: 100px;
+            position: relative;
+        }
+        #double_butt {
+            position: absolute;
+            width: 80px;
+            height: 52px;
+            left: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-family: "Lucida Sans";
+            font-weight: bold;
+            font-size: 23px;
+            text-shadow: 0px 1px 0px #fff;
+            text-align: center;
+            padding-top: 28px;   
+            -moz-border-radius: 100px;  
+            -webkit-border-radius: 100px;  
+            border-radius: 100px;  
+            background-position: 0 6px;
+            background-color: orange;
+            background-repeat: no-repeat;
+            box-shadow: rgba(0,0,0,.4) 0 3px 6px;
+            transition: all .1s ease-in;
+            color: #888;
+            font-size: 25px;
+            font-family:"楷体","楷体_GB2312"; 
+            /* font-weight: bold; */
+        }
+        #double_butt:hover {
+            background-position: 0 0px;
+            box-shadow: rgba(0,0,0,.4) 0 3px 8px;
+        }
+        #double_butt:active {
+            width: 76px;
+            height: 48px;
+            margin: 2px 0 0 2px;   
+            border-bottom: 1px solid #fff;
+            font-size: 21px;
+            color: #777;
+            box-shadow: inset rgba(0,0,0,.5) 0px 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="info">
+            <div id="name_title">PLAYER</div>
+            <div id="name_player1">snake1</div>
+            <div id="level_title">LEVEL</div>
+            <div id="level_player1">1</div>
+            <div id="score_title">SCORE</div>
+            <div id="score_player1">0</div>
+            <div id="name_title_player2"></div>
+            <div id="name_player2"></div>
+            <div id="level_title_player2"></div>
+            <div id="level_player2"></div>
+            <div id="score_title_player2"></div>
+            <div id="score_player2"></div>
+        </div>
+        <canvas id="canv" width="640" height="640"></canvas>
+        <div>
+            <div id="single_button">
+                <a id="single_butt"  onclick="single_model()">单人</a>
+            </div>
+            <div id="double_button">
+                <a id="double_butt" onclick="double_model()">双人</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var box=document.getElementById('canv').getContext('2d');
+    var row= 32;
+    var food = 0;
+    var is_start = false;
+    var is_two_player = false;
+    var snake_player1 = [828,860,892];
+    var snake_player2 = [70,69,68];
+    var direction_player1 = -32;
+    var direction_player2 = 1;
+    var timer_palyer1 = null;
+    var timer_palyer2 = null;
+    var speed_player1 = 150;
+    var speed_player2 = 150;
+    var level_player1 = 1;             
+    var score_player1 = 0;
+    var level_player2 = 1;
+    var score_player2 = 0;
+
+    remake();
+    document.onkeydown=function(e){
+        key = e.keyCode;
+        console.log(key);
+        if(is_start == false && key == 32){
+            start()
+        } else if(is_start && key == 32){
+            stop()
+        }
+        if( (direction_player1 == 1 || direction_player1 == -1) && is_start ){
+            if (key == 38){
+                direction_player1 = -row;
+            }
+            if(key == 40){
+                direction_player1 = row;
+            }
+        }
+        if( (direction_player1 == row || direction_player1 == -row) && is_start){
+            if(key == 39){
+                direction_player1 = 1;
+            }
+            if(key == 37){
+                direction_player1 = -1;
+            }
+        }
+        if(is_two_player){
+            if( (direction_player2 == 1 || direction_player2 == -1) && is_start ){
+                if (key == 87){
+                    direction_player2 = -row;
+                }
+                if(key == 83){
+                    direction_player2 = row;
+                }
+            }
+            if( (direction_player2 == row || direction_player2 == -row) && is_start){
+                if(key == 68){
+                    direction_player2 = 1;
+                }
+                if(key == 65){
+                    direction_player2 = -1;
+                }
+            }
+        }
+    }
+
+    //开始
+    function start(){
+        is_start = true
+        timer_palyer1 = setInterval(() => {
+            single_run()
+        }, speed_player1)
+        if(is_two_player){
+            timer_palyer2 = setInterval(() => {
+                double_run()
+            }, speed_player2)
+        }
+    }
+
+    //停止
+    function stop(){
+        is_start = false
+        if(timer_palyer1 != null){
+            clearInterval(timer_palyer1);
+            timer_palyer1 = null;
+        }
+        if(is_two_player){
+            if(timer_palyer2 != null){
+                clearInterval(timer_palyer2);
+                timer_palyer2 = null;
+            }
+        }
+    }
+
+    //单人模式
+    function single_model(){
+        stop();
+        remake();
+        document.getElementById("single_butt").style.color = "white"
+        document.getElementById("double_butt").style.color = "#888"
+        document.getElementById("name_title_player2").innerHTML = ""
+        document.getElementById("name_player2").innerHTML = ""
+        document.getElementById("level_title_player2").innerHTML = ""
+        document.getElementById("level_player2").innerHTML = ""
+        document.getElementById("score_title_player2").innerHTML = ""
+        document.getElementById("score_player2").innerHTML = ""
+        is_start = false
+        is_two_player = false
+    }
+
+    //双人模式
+    function double_model(){
+        stop();
+        remake();
+        document.getElementById("single_butt").style.color = "#888"
+        document.getElementById("double_butt").style.color = "white"
+        document.getElementById("name_title_player2").innerHTML = "PLAYER"
+        document.getElementById("name_player2").innerHTML = "snake2"
+        document.getElementById("level_title_player2").innerHTML = "LEVEL"
+        document.getElementById("level_player2").innerHTML = "1"
+        document.getElementById("score_title_player2").innerHTML = "SCORE"
+        document.getElementById("score_player2").innerHTML = "0"
+        is_start = false
+        is_two_player = true
+        for(var i in snake_player2){
+            if(i== 0){
+                draw(snake_player2[i], "green")
+            } 
+            else {
+                draw(snake_player2[i], "blue")
+            }
+        }
+    }
+
+    //循环绘制地图块
+    function ready(){
+        box = document.getElementById('canv').getContext('2d');
+        for(var i=0;i<row*row;i++){
+            if(i< row || i >= row*(row-1) || i % row == 0 || (i % row) == (row -1)){
+                draw(i,"#00FF00");
+            }else{
+                draw(i,"#00033C");
+            }
+        }
+    }
+
+    //绘制一个地图块
+    function draw(point,color){
+        //fillStyle()方法为设置用于填充绘画的颜色
+        box.fillStyle=color;
+        //fillRect()方法用于绘制“被填充”的矩形
+        box.fillRect(point%row*20+1,parseInt((point/row))*20+1,18,18);
+    }
+
+    //随机产生新的食物
+    function createFood(){
+        food = parseInt(Math.random()*((row-1)*(row-1)));
+        while(snake_player2.indexOf(food)>0 || snake_player1.indexOf(food)>0 || food % row == 0 || food % row == 31 || food < (row-1) || food >= row*(row - 1)){
+            food = parseInt(Math.random()*((row-1)*(row-1)));
+        }
+    }
+
+    //重置
+    function remake(){
+        restDate();
+        ready();
+        createFood();
+        draw(food,"yellow");
+        for(var i in snake_player1){
+            if(i==0){
+                draw(snake_player1[i], "orange")
+            } 
+            else {
+                draw(snake_player1[i], "red")
+            }
+        }
+    }
+
+    function restDate(){
+        box=document.getElementById('canv').getContext('2d');
+        row= 32;
+        food = 0;
+        is_start = false;
+        is_two_player = false;
+        snake_player1 = [828,860,892];
+        snake_player2 = [70,69,68];
+        direction_player1 = -32;
+        direction_player2 = 1;
+        timer_palyer1 = null;
+        timer_palyer2 = null;
+        speed_player1 = 150;
+        speed_player2 = 150;
+        level_player1 = 1;             
+        score_player1 = 0;
+        level_player2 = 1;
+        score_player2 = 0;
+    }
+
+    //绘制玩家一的一步
+    function single_run(){
+        var snake_head_player1 = snake_player1[0]+ direction_player1
+        snake_player1.unshift(snake_head_player1);
+        if(is_two_player){
+            if(snake_player1[0] == snake_player2[0] && direction_player1 == -direction_player2){
+                stop();
+                if(window.confirm('打平啦 !!!, 继续玩吗?')){
+                    if(is_two_player){
+                        double_model()
+                    } else {
+                        single_model()
+                    }
+                    return ;
+                }else{
+                    return ;
+                }
+            }
+            if(snake_player2.indexOf(snake_head_player1,1) > 0){
+                stop();
+                if(window.confirm('PLAYER TWO WIN !!!, 继续玩吗?')){
+                    if(is_two_player){
+                        double_model()
+                    } else {
+                        single_model()
+                    }
+                    return ;
+                }else{
+                    return ;
+                }
+            }
+        }
+        if(snake_player1.indexOf(snake_head_player1,1) > 0 || snake_head_player1 < row || snake_head_player1 > (row)*(row-1) || (direction_player1 == -1 && (snake_head_player1 % (row) == 0)) || (direction_player1 == 1 && (snake_head_player1 % (row) == (row-1)))){
+            stop();
+            if(!is_two_player){
+                if(window.confirm('好可惜啊 : ) , 继续玩吗?')){
+                    if(is_two_player){
+                        double_model()
+                    } else {
+                        single_model()
+                    }
+                    return ;
+                }else{
+                    return ;
+                }
+            } else {
+                if(window.confirm('PLAYER TWO WIN !!!, 继续玩吗?')){
+                    if(is_two_player){
+                        double_model()
+                    } else {
+                        single_model()
+                    }
+                    return ;
+                }else{
+                    return ;
+                }
+            }
+        }
+        for(var i in snake_player1){
+            if(i==0){
+                draw(snake_player1[i], "orange")
+            } 
+            else {
+                draw(snake_player1[i], "red")
+            }
+        }
+        draw(snake_player1.pop(),"#00033C");
+        isEat();
+    }
+
+    //玩家二的一步
+    function double_run(){
+        var snake_head_player2 = snake_player2[0]+ direction_player2
+        snake_player2.unshift(snake_head_player2);
+        if(snake_player1[0] == snake_player2[0] && direction_player1 == -direction_player2){
+            stop();
+            if(window.confirm('打平啦 !!!, 继续玩吗?')){
+                if(is_two_player){
+                    double_model()
+                } else {
+                    single_model()
+                }
+                return ;
+            }else{
+                return ;
+            }
+        }
+        if(snake_player1.indexOf(snake_head_player2,1) > 0 || snake_player2.indexOf(snake_head_player2,1) > 0  || snake_head_player2 < row || snake_head_player2 > (row)*(row-1) || (direction_player2 == -1 && ( snake_head_player2 % (row) == 0)) || (direction_player2 == 1 && ( snake_head_player2 % (row) == (row-1)))){
+            stop();
+            if(window.confirm('PLAYER ONE WIN !!!, 继续玩吗?')){
+                if(is_two_player){
+                    double_model()
+                } else {
+                    single_model()
+                }
+                return ;
+            }else{
+                return ;
+            }
+        }
+        if(snake_player2.indexOf(snake_player1[0],1) > 0){
+            stop();
+            if(window.confirm('PLAYER TWO WIN !!!, 继续玩吗?')){
+                if(is_two_player){
+                    double_model()
+                } else {
+                    single_model()
+                }
+                return ;
+            }else{
+                return ;
+            }
+        }
+        for(var i in snake_player2){
+            if(i==0){
+                draw(snake_player2[i], "green")
+            } 
+            else {
+                draw(snake_player2[i], "blue")
+            }
+        }
+        //将蛇尾元素删除并且根据删除的坐标绘制为地图块的颜色
+        draw(snake_player2.pop(),"#00033C");
+        isEat();
+    }
+
+    //如果吃到了食物
+    function isEat(){
+        if(snake_player1[0] == food){
+            score_player1 += 10;
+            document.getElementById('score_player1').innerHTML = score_player1
+            if(score_player1 % 50 == 0){
+                level_player1 ++;
+                document.getElementById('level_player1').innerHTML = level_player1
+            }
+            createFood();
+            draw(food,"yellow");
+            //蛇身+1
+            snake_player1.push(snake_player1[snake_player1.length-1])
+            //减速
+            if(!is_two_player){
+                speed_player1 = speed_player1 - 5
+            }
+            else {
+                speed_player1 = speed_player1 + 5                    
+            }
+            clearInterval(timer_palyer1);
+            timer_palyer1 = null;
+            timer_palyer1 = setInterval(() => {
+                single_run()
+            }, speed_player1)
+        }
+        if(is_two_player){
+            if(snake_player2[0] == food){
+                score_player2 += 10;
+                document.getElementById('score_player2').innerHTML = score_player2
+                if(score_player2 % 50 == 0){
+                    level_player2 ++;
+                    document.getElementById('level_player2').innerHTML = level_player2
+                }
+                createFood();
+                draw(food,"yellow");
+                //蛇身+1
+                snake_player2.push(snake_player2[snake_player2.length-1])
+                //减速
+                speed_player2 = speed_player2 + 5
+                clearInterval(timer_palyer2);
+                timer_palyer2 = null;
+                timer_palyer2 = setInterval(() => {
+                    double_run()
+                }, speed_player2)
+            }
+        }
+    }
+</script>
+</html>
