@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background-size: 100%;
+    }
+    a {
+        text-decoration: none;
+    }
+    .menu {
+        position: absolute;
+        left: 300px;
+        top: 150px;
+        line-height: 50px;
+    }
+    .menu-font {
+        font-size: 36px;
+        font-weight: 500;
+        cursor: pointer;
+        color: #05b6f0;
+        text-decoration: none;
+    }
+</style>
+<body style="background-image: url(../img/home.png)">
+<div class="menu">
+    <div class="menu-font" onclick="jump(1)"><img src="../img/1.%20俄罗斯方块.png"></div>
+    <div class="menu-font" onclick="jump(2)"><img src="../img/2.%20贪吃蛇.png"></div>
+    <div class="menu-font" onclick="jump(3)"><img src="../img/3.%20超级马里奥.png"></div>
+</div>
+<script>
+    function jump(value) {
+        let url = null;
+        let loading = "loading.html"
+        switch (value) {
+            case 1: url = "../tetris/back.html"; break;
+            case 2: url = "../GreedySnake/GreedySnake.html"; break;
+            case 3: url = ""
+        }
+        sessionStorage.setItem("url", url);
+        location.href = loading;
+    }
+</script>
+</body>
+</html>

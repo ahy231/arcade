@@ -256,6 +256,22 @@
             margin-top: 100px;
             position: relative;
         }
+        #exit {
+            width: 100px;
+            height: 100px;
+            border-bottom: 2px solid #eee;
+            background-image: linear-gradient(top, #999, #d0d0d0 80% );
+            -moz-border-radius: 100px;
+            -webkit-border-radius: 100px;
+            border-radius: 100px;
+            box-shadow: inset rgba(255, 230, 0, 0.2) 0px 5px 6px ;
+            /* box-shadow: inset rgba(0,0,0,0.2) 0px 5px 6px ;   */
+            /* left: 50%;
+            top: 50%; */
+            margin-left: 50px;
+            margin-top: 100px;
+            position: relative;
+        }
         #double_butt {
             position: absolute;
             width: 80px;
@@ -281,6 +297,33 @@
             color: #888;
             font-size: 25px;
             font-family:"楷体","楷体_GB2312"; 
+            /* font-weight: bold; */
+        }
+        #Exit-font {
+            position: absolute;
+            width: 80px;
+            height: 52px;
+            left: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-family: "Lucida Sans";
+            font-weight: bold;
+            font-size: 23px;
+            text-shadow: 0px 1px 0px #fff;
+            text-align: center;
+            padding-top: 28px;
+            -moz-border-radius: 100px;
+            -webkit-border-radius: 100px;
+            border-radius: 100px;
+            background-position: 0 6px;
+            background-color: indianred;
+            background-repeat: no-repeat;
+            box-shadow: rgba(105, 105, 105, 0.4) 0 3px 6px;
+            /* box-shadow: rgba(0,0,0,.4) 0 3px 6px; */
+            transition: all .1s ease-in;
+            color: #888;
+            font-size: 25px;
+            font-family:"楷体","楷体_GB2312";
             /* font-weight: bold; */
         }
         #double_butt:hover {
@@ -321,6 +364,9 @@
             </div>
             <div id="double_button">
                 <a id="double_butt" onclick="double_model()">双人</a>
+            </div>
+            <div id="exit">
+                <a id="Exit-font" href="../public/home.html">Exit</a>
             </div>
         </div>
     </div>
@@ -536,6 +582,10 @@
                     }
                     return ;
                 }else{
+                    if (window.confirm('是不是很气！想不想打策划！')) {
+                        sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                        location.href = "../public/loading.html";
+                    }
                     return ;
                 }
             }
@@ -549,6 +599,10 @@
                     }
                     return ;
                 }else{
+                    if (window.confirm('是不是很气！想不想打策划！')) {
+                        sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                        location.href = "../public/loading.html";
+                    }
                     return ;
                 }
             }
@@ -564,6 +618,10 @@
                     }
                     return ;
                 }else{
+                    if (window.confirm('是不是很气！想不想打策划！')) {
+                        sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                        location.href = "../public/loading.html";
+                    }
                     return ;
                 }
             } else {
@@ -575,6 +633,10 @@
                     }
                     return ;
                 }else{
+                    if (window.confirm('是不是很气！想不想打策划！')) {
+                        sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                        location.href = "../public/loading.html";
+                    }
                     return ;
                 }
             }
@@ -604,7 +666,11 @@
                     single_model()
                 }
                 return ;
-            }else{
+            } else{
+                if (window.confirm('是不是很气！想不想打策划！')) {
+                    sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                    location.href = "../public/loading.html";
+                }
                 return ;
             }
         }
@@ -618,6 +684,10 @@
                 }
                 return ;
             }else{
+                if (window.confirm('是不是很气！想不想打策划！')) {
+                    sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                    location.href = "../public/loading.html";
+                }
                 return ;
             }
         }
@@ -631,6 +701,10 @@
                 }
                 return ;
             }else{
+                if (window.confirm('是不是很气！想不想打策划！')) {
+                    sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                    location.href = "../public/loading.html";
+                }
                 return ;
             }
         }

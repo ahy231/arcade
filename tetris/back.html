@@ -96,12 +96,13 @@
             </tr>
         </table>
         <div id="exit">
-            <a href="#">e<br>x<br>i<br>t</a>
+            <a href="../public/home.html">e<br>x<br>i<br>t</a>
         </div>
     </div>
     <script type="text/javascript">
         var tetris1
         var tetris2
+        var count = 0; //存放当前结束的玩家数
         /**
          * [一个完整的俄罗斯方块类 design by magic_xiang]
          * @param  {number} side     [每个方块边长(px),默认38]
@@ -536,8 +537,23 @@
             gameover() {
                 for (let i = 0; i < this.arr_store_X.length; i++) {
                     if (this.arr_store_Y[i] == 0) {
+                        count ++;
                         clearInterval(this.ident)
                         this.over = true
+                        break;
+                    }
+                }
+                if (count === 2) {
+                    if(window.confirm('游戏结束，继续游戏吗?')){
+                        count = 0;
+                        location.reload();
+                        return ;
+                    }else{
+                        if (window.confirm('是不是很气！想不想打策划！')) {
+                            sessionStorage.setItem("url", "../HitHH/HitHH.html");
+                            location.href = "../public/loading.html";
+                        }
+                        return ;
                     }
                 }
             }
